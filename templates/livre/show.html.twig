@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre{% endblock %}
+
+{% block body %}
+    <h1>Livre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ livre.id }}</td>
+            </tr>
+            <tr>
+                <th>Isbn</th>
+                <td>{{ livre.isbn }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Nombre_pages</th>
+                <td>{{ livre.nombrePages }}</td>
+            </tr>
+            <tr>
+                <th>Date_de_parution</th>
+                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ livre.note }}</td>
+            </tr>
+            <tr>
+             <th>Auteurs</th>
+                {% for aut in auteurs %}
+                <tr>
+                    <th>nom_prenom</th>
+                    <td>{{ aut.nom_prenom }}</td>
+                    <th>sexe</th>
+                    <td>{{ aut.sexe }}</td>
+                    <th>date_de_naissance</th>
+                    <td>{{ aut.date_de_naissance|date("m/d/Y") }}</td>
+                    <th>nationalite</th>
+                    <td>{{ aut.nationalite }}</td>
+                    </tr>
+                {% endfor %}
+            </tr>
+            <tr>
+             <th>Genres</th>
+                {% for gen in genres %}
+                <tr>
+                    <th>nom</th>
+                    <td>{{ gen.nom }}</td>
+                    </tr>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('livre_index') }} " class="btn btn-dark mb-3">back to list</a>
+
+    <a href="{{ path('livre_edit', {'id': livre.id}) }}" class="btn btn-success mb-3">edit</a>
+
+    {{ include('livre/_delete_form.html.twig') }}
+{% endblock %}
