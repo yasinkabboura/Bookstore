@@ -3,12 +3,12 @@
 {% block title %}Genre index{% endblock %}
 
 {% block body %}
-    <h1>Genre index</h1>
+
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                
                 <th>Nom</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +16,7 @@
         <tbody>
         {% for genre in genres %}
             <tr>
-                <td>{{ genre.id }}</td>
+                
                 <td>{{ genre.nom }}</td>
                 <td>
                     <a href="{{ path('genre_show', {'id': genre.id}) }}" class="btn btn-success mt-1 mb-1">show</a>

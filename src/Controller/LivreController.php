@@ -35,14 +35,14 @@ class LivreController extends AbstractController
      */
     public function showdateRes(LivreRepository $livreRepository,Request $req): Response
     {
-        $r= $req->request->get('date1');
+        $r= $req->query->get('date1');
+        $r2= $req->query->get('date2');
         
-        $query = $livreRepository->createQueryBuilder('s')
-            ->from('App:Livre', 'j')
+        $query = $livreRepository->createQueryBuilder('j')
             ->Where('j.date_de_parution < :date2' )
             ->andWhere('j.date_de_parution > :date1' )
-            ->setParameter('date1',strtotime("April 15 1900") )
-            ->setParameter('date2',strtotime("April 15 2020"));
+            ->setParameter('date1',$r)
+            ->setParameter('date2',$r2);
             $a = $query->getQuery()->getResult();
 
     
