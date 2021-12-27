@@ -103,6 +103,7 @@ class GenreController extends AbstractController
             $entityManager->remove($genre);
             $entityManager->flush();
         }
+        
         }
 
         return $this->redirectToRoute('genre_index', [], Response::HTTP_SEE_OTHER);

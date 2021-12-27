@@ -5,61 +5,52 @@
 {% block body %}
     <h1>Livre</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ livre.id }}</td>
-            </tr>
-            <tr>
-                <th>Isbn</th>
-                <td>{{ livre.isbn }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ livre.titre }}</td>
-            </tr>
-            <tr>
-                <th>Nombre_pages</th>
-                <td>{{ livre.nombrePages }}</td>
-            </tr>
-            <tr>
-                <th>Date_de_parution</th>
-                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Note</th>
-                <td>{{ livre.note }}</td>
-            </tr>
-            <tr>
-             <th>Auteurs</th>
-                {% for aut in auteurs %}
+    <div class="card bg-dark text-black" width="100%" height="100%">
+  <img class="card-img" src="{{ asset('pic/book1.jpg') }}" alt="Card image">
+  <div class="card-img-overlay">
+  <a href="{{ path('livre_edit', {'id': livre.id}) }}" class="btn btn-success mb-3">edit</a>
+    <h2 class="card-title">{{ livre.titre }}</h2>
+    <p class="card-text">
+        <h4>ISBN  : {{ livre.isbn }}</h4>
+        <h4>Nombre des pages :  {{ livre.nombrePages }}</h4>
+        <h4>Note : {{ livre.note  }}</h4>
+        <h4>Date de parution :  {{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</h4>
+        <br><br>
+        <h3>Genres </h3>
+        {% for gen in genres %}
                 <tr>
-                    <th>nom_prenom</th>
-                    <td>{{ aut.nom_prenom }}</td>
-                    <th>sexe</th>
-                    <td>{{ aut.sexe }}</td>
-                    <th>date_de_naissance</th>
-                    <td>{{ aut.date_de_naissance|date("m/d/Y") }}</td>
-                    <th>nationalite</th>
-                    <td>{{ aut.nationalite }}</td>
-                    </tr>
+                    <h6>{{ gen.nom }}</h6>
+                    
                 {% endfor %}
-            </tr>
-            <tr>
-             <th>Genres</th>
-                {% for gen in genres %}
-                <tr>
-                    <th>nom</th>
-                    <td>{{ gen.nom }}</td>
-                    </tr>
-                {% endfor %}
-            </tr>
-        </tbody>
-    </table>
+    </p>
+    <p class="card-text">
+    <br>
+    <h3>Auteurs </h3>
+    <div class="card-columns">
+  {% for auteur in auteurs %}
+  <div class="card">
+   
+    <div class="card-body">
+      <h5 class="card-title">{{ auteur.nomPrenom }}</h5>
+      <p class="card-text">
+      <h6>Sexe  : {{ auteur.sexe }}</h6>
+        <h6>nationalite :  {{ auteur.nationalite }}</h6>
+      </p>
+      <p class="card-text"><small class="text-muted">{{ auteur.dateDeNaissance ? auteur.dateDeNaissance|date('Y-m-d') : '' }}</small>
+  
+      </p>
+    </div>
+  </div>
+   
+           
+        {% endfor %}
+        </div>
+    </p>
+  </div>
+</div>
 
     
 
-    <a href="{{ path('livre_edit', {'id': livre.id}) }}" class="btn btn-success mb-3">edit</a>
+    
 
 {% endblock %}
