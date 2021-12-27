@@ -27,6 +27,7 @@ class LivreType extends AbstractType
                 'class' => Auteur::class,
                 'choice_label' => 'nom_prenom',
                 'multiple' => true,
+                'by_reference' => false,
             ])
             ->add('genre', EntityType::class, [
                 'class' => Genre::class,

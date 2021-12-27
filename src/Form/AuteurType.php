@@ -31,6 +31,7 @@ class AuteurType extends AbstractType
                 'class' => Livre::class,
                 'choice_label' => 'titre',
                 'multiple' => true,
+                
             ]);
         ;
         $builder->get('livre')->setRequired(false);

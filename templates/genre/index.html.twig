@@ -3,7 +3,7 @@
 {% block title %}Genre index{% endblock %}
 
 {% block body %}
-
+<a href="{{ path('genre_new') }}" class="btn btn-success mt-3">Create new</a><br><br>
 
     <table class="table">
         <thead>
@@ -19,8 +19,7 @@
                 
                 <td>{{ genre.nom }}</td>
                 <td>
-                    <a href="{{ path('genre_show', {'id': genre.id}) }}" class="btn btn-success mt-1 mb-1">show</a>
-                    <a href="{{ path('genre_edit', {'id': genre.id}) }}" class="btn btn-info mt-1 mb-1">edit</a>
+                    {{ include('genre/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
@@ -31,5 +30,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('genre_new') }}" class="btn btn-success">Create new</a>
+    
 {% endblock %}

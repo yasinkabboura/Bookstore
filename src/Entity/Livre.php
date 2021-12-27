@@ -51,7 +51,6 @@ class Livre
     private $note;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
      * 
      * @ORM\ManyToMany(targetEntity=Auteur::class, mappedBy="livre")
      * 
@@ -59,7 +58,6 @@ class Livre
     private $auteurs;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
      * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="livres")
      */
     private $genre;

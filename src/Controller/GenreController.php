@@ -70,9 +70,14 @@ class GenreController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($genre);
             $entityManager->flush();
 
-            return $this->redirectToRoute('genre_index', [], Response::HTTP_SEE_OTHER);
+            // return $this->redirectToRoute('genre_index', [], Response::HTTP_SEE_OTHER);
+            return $this->renderForm('genre/edit.html.twig', [
+                'genre' => $genre,
+                'form' => $form,
+            ]);
         }
 
         return $this->renderForm('genre/edit.html.twig', [

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Livre{% endblock %}
+{% block title %}Rechercher par date{% endblock %}
 
 {% block body %}
-    <h1>Edit Livre</h1>
+    <h1>Rechercher par date</h1>
 
     <form action="showdateRes" method="GET">
     <input type="date" class="form-control mb-3" id="date1id" name="date1" />
@@ -13,7 +13,7 @@
     
 
 
-    <a href="{{ path('livre_index') }}" class="btn btn-dark mt-3 mb-3">back to list</a>
+
 
     
 {% endblock %}

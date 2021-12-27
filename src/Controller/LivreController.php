@@ -31,6 +31,25 @@ class LivreController extends AbstractController
         ]);
     }
     /**
+     * @Route("/rechercher", name="rechercher")
+     */
+    public function rechercherNom(LivreRepository $livreRepository,Request $req): Response
+    {
+        $b= $req->query->get('se');
+        $r=  "%".$b."%"; 
+
+        $query = $livreRepository->createQueryBuilder('j')
+            ->Where('j.titre LIKE :r' )
+            ->setParameter('r',$r);
+            $a = $query->getQuery()->getResult();
+
+    
+        return $this->render('livre/index.html.twig', [
+            'livres' => $a, 
+        ]);
+    }
+    
+    /**
      * @Route("/showdateRes", name="showdateRes")
      */
     public function showdateRes(LivreRepository $livreRepository,Request $req): Response

@@ -20,6 +20,7 @@ class GenreType extends AbstractType
                 'class' => Livre::class,
                 'choice_label' => 'titre',
                 'multiple' => true,
+                'by_reference' => false,
             ]);
         ;
         $builder->get('livres')->setRequired(false);

@@ -58,9 +58,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('livre_index') }} " class="btn btn-dark mb-3">back to list</a>
+    
 
     <a href="{{ path('livre_edit', {'id': livre.id}) }}" class="btn btn-success mb-3">edit</a>
 
-    {{ include('livre/_delete_form.html.twig') }}
 {% endblock %}

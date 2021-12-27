@@ -17,8 +17,6 @@ class AppFixtures extends Fixture
     public $faker;
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
         $this->faker = Factory::create('fr_FR');
         $Aut = $this->loadAuteur($manager);
         $Gen =$this->loadGenre($manager);
@@ -30,9 +28,11 @@ class AppFixtures extends Fixture
     public function loadGenre(ObjectManager $manager){
         $i=0;
         $Gen = array();
+        $ar = array("Roman","Biographie","Nouvelle","Fantasy","Conte","Témoignage","Épopée","Science-fiction","Horreur","Fantastique");
         while($i<10){
+            $v = $ar[$i];
             $product = new Genre();
-            $product->setNom($this->faker->lexify());
+            $product->setNom($v);
             array_push($Gen, $product);
             $manager->persist($product);
             $i++;
@@ -54,9 +54,9 @@ class AppFixtures extends Fixture
             else{
                 $product->setSexe("F");
             }
-            $product->setNationalite($this->faker->lexify('??????'));
+            $product->setNationalite($this->faker->country());
 
-            $product->setDateDeNaissance($this->faker->dateTimeBetween('-40 year', '-18 year'));
+            $product->setDateDeNaissance($this->faker->dateTimeBetween('-80 year', '-18 year'));
             array_push($Aut, $product);
             $manager->persist($product);
             $i++;

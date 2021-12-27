@@ -3,39 +3,31 @@
 {% block title %}Auteur index{% endblock %}
 
 {% block body %}
+        <a href="{{ path('auteur_new') }}" class="btn btn-success mt-3" >Create new</a><br><br>
+<div class="card-columns">
+  {% for auteur in auteurs %}
+  <div class="card">
+    <img class="card-img-top" src="{{ asset('pic/book.jpg') }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ auteur.nomPrenom }}</h5>
+      <p class="card-text">
+      <h6>Sexe  : {{ auteur.sexe }}</h6>
+        <h6>nationalite :  {{ auteur.nationalite }}</h6>
+      </p>
+      <p class="card-text"><small class="text-muted">{{ auteur.dateDeNaissance ? auteur.dateDeNaissance|date('Y-m-d') : '' }}</small>
+      
+                     {{ include('auteur/_delete_form.html.twig') }}
+      </p>
+    </div>
+  </div>
+   
 
-
-    <table class="table">
-        <thead>
-            <tr>
-               
-                <th>Nom_prenom</th>
-                <th>Sexe</th>
-                <th>Date_de_naissance</th>
-                <th>Nationalite</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for auteur in auteurs %}
-            <tr>
-                
-                <td>{{ auteur.nomPrenom }}</td>
-                <td>{{ auteur.sexe }}</td>
-                <td>{{ auteur.dateDeNaissance ? auteur.dateDeNaissance|date('Y-m-d') : '' }}</td>
-                <td>{{ auteur.nationalite }}</td>
-                <td>
-                    <a href="{{ path('auteur_show', {'id': auteur.id}) }}" class="btn btn-success mt-1 mb-1">show</a>
-                    <a href="{{ path('auteur_edit', {'id': auteur.id}) }}" class="btn btn-info mt-1 mb-1">edit</a>
-                </td>
-            </tr>
         {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
+           
+                <h1 >no records found</h1>
+           
         {% endfor %}
-        </tbody>
-    </table>
+        </div>
 
-    <a href="{{ path('auteur_new') }}" class="btn btn-success">Create new</a>
+    
 {% endblock %}

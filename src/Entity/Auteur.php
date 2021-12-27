@@ -40,6 +40,7 @@ class Auteur
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Country
      */
     private $nationalite;
 
