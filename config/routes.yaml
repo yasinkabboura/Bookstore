@@ -1,3 +1,15 @@
 index:
   path: /
   controller: App\Controller\LivreController::index
+
+rechercher:
+  path: /auteur/rechercher
+  controller: App\Controller\AuteurController::rechercherNom
+
+recherchergenre:
+  path: /genre/rechercher
+  controller: App\Controller\GenreController::rechercherNom
+
+rechercherlivre:
+  path: /rechercher
+  controller: App\Controller\LivreController::rechercherNom

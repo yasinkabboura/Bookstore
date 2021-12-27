@@ -5,7 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-       
+       <link rel="stylesheet" href="{{ asset('css/main.css') }}" type="text/css">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -39,10 +39,24 @@
        
       
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="rechercher" method="GET">
+    <form class="form-inline my-2 my-lg-0 " action="rechercher" method="GET">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="se">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
     </form>
+    <div class="nav-item dropdown mr-5" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <img src="{{ asset('pic/book.jpg') }}" alt="dropdown image" class="img-responsive rounded-circle " width="30px" height="30px">
+        </a>
+         {% if app.user %}
+         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/logout">Deconnexion</a>
+      </div>
+         {% else %}
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/login">Connexion</a>
+          <a class="dropdown-item" href="/register">cree un compte</a>
+      </div>
+      {% endif %}
     
   </div>
 </nav>

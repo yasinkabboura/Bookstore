@@ -6,7 +6,7 @@
 <a href="{{ path('livre_new') }}" class="btn btn-success mt-3">Create new</a><br><br>
 <div class="card-columns">
   {% for livre in livres %}
-  <div class="card">
+  <div class="card ">
     <img class="card-img-top" src="{{ asset('pic/book.jpg') }}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{ livre.titre }}</h5>

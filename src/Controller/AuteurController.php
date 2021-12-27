@@ -26,6 +26,24 @@ class AuteurController extends AbstractController
             'auteurs' => $auteurRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/rechercher", name="rechercher")
+     */
+    public function rechercherNom(AuteurRepository $auteurRepository,Request $req): Response
+    {
+        $b= $req->query->get('se');
+        $r=  "%".$b."%"; 
+
+        $query = $auteurRepository->createQueryBuilder('j')
+            ->Where('j.nom_prenom LIKE :r' )
+            ->setParameter('r',$r);
+            $a = $query->getQuery()->getResult();
+
+    
+        return $this->render('auteur/index.html.twig', [
+            'auteurs' => $a, 
+        ]);
+    }
 
     /**
      * @Route("/new", name="auteur_new", methods={"GET", "POST"})
@@ -51,7 +69,7 @@ class AuteurController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="auteur_show", methods={"GET"})
+     * @Route("/{id}", name="auteur_show", methods={"GET"},requirements={"id":"\d+"})
      */
     public function show(Auteur $auteur,LivreRepository $livreRepository): Response
     {
@@ -69,7 +87,7 @@ class AuteurController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="auteur_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="auteur_edit", methods={"GET", "POST"},requirements={"id":"\d+"})
      */
     public function edit(Request $request, Auteur $auteur, EntityManagerInterface $entityManager): Response
     {
@@ -88,9 +106,10 @@ class AuteurController extends AbstractController
             'form' => $form,
         ]);
     }
+    
 
     /**
-     * @Route("/{id}", name="auteur_delete", methods={"POST"})
+     * @Route("/{id}", name="auteur_delete", methods={"POST"},requirements={"id":"\d+"})
      */
     public function delete(Request $request, Auteur $auteur, EntityManagerInterface $entityManager): Response
     {

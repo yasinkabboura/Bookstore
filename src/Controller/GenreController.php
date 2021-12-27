@@ -26,6 +26,24 @@ class GenreController extends AbstractController
             'genres' => $genreRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/rechercher", name="rechercher")
+     */
+    public function rechercherNom(GenreRepository $genreRepository,Request $req): Response
+    {
+        $b= $req->query->get('se');
+        $r=  "%".$b."%"; 
+
+        $query = $genreRepository->createQueryBuilder('j')
+            ->Where('j.nom LIKE :r' )
+            ->setParameter('r',$r);
+            $a = $query->getQuery()->getResult();
+
+    
+        return $this->render('genre/index.html.twig', [
+            'genres' => $a, 
+        ]);
+    }
 
     /**
      * @Route("/new", name="genre_new", methods={"GET", "POST"})
@@ -51,7 +69,7 @@ class GenreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="genre_show", methods={"GET"})
+     * @Route("/{id}", name="genre_show", methods={"GET"},requirements={"id":"\d+"})
      */
     public function show(Genre $genre): Response
     {
@@ -61,7 +79,7 @@ class GenreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="genre_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="genre_edit", methods={"GET", "POST"},requirements={"id":"\d+"})
      */
     public function edit(Request $request, Genre $genre, EntityManagerInterface $entityManager): Response
     {
@@ -85,9 +103,10 @@ class GenreController extends AbstractController
             'form' => $form,
         ]);
     }
+    
 
     /**
-     * @Route("/{id}", name="genre_delete", methods={"POST"})
+     * @Route("/{id}", name="genre_delete", methods={"POST"},requirements={"id":"\d+"})
      */
     public function delete(Request $request, Genre $genre, EntityManagerInterface $entityManager,LivreRepository $LivreRepository): Response
     {
